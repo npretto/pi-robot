@@ -1,0 +1,8 @@
+upload:
+  after_script:
+    - git config credential.helper 'store --file .my-credentials'
+    - echo "https://$github_token:x-oauth-basic@github.com" > .my-credentials
+    - git checkout $CI_BUILD_REF_NAME
+    - git pull
+    - git remote set-url github https://github.com/npretto/pi-robot.git
+    - git push github --all
